@@ -21,13 +21,12 @@ namespace _3Monkey
                 haskeys = false;
                 hasmatches = false;
 
-               
+
                 CaveEnter();
 
 
                 Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine("Press 'x' to exit or any other key to play again.");
+                DarkCyantext("Press 'x' to exit or any other key to play again.");
             }
             while (Console.ReadKey().KeyChar != 'x');
         }
@@ -46,37 +45,24 @@ namespace _3Monkey
         static void DrawHelp()
         {
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Commands");
+            Bluetext("Commands");
 
             Console.Write("help");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(" - show valid commands.");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-            Console.Write("go (left, right, forward, back)");
+            DarkCyantext("go (left, right, forward, back)");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(" - move to a next room");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-
-            Console.Write("pick up (item name)");
-            Console.ForegroundColor = ConsoleColor.White;
+            DarkCyantext("pick up (item name)");
             Console.WriteLine(" - collect an item and add to inventory.");
-
-            Console.Write("Inventory");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" - Shows current inventory. ");
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-
-        static void inventory() { 
+        static void inventory() {
             bool askAgain = true;
-
             while (askAgain)
             {
-            string userCommand = GetInput();
-            Console.Write("Here is all the junk you picked up: ");
-            Console.WriteLine();
+                string userCommand = GetInput();
+                Console.Write("Here is all the junk you picked up: ");
+                Console.WriteLine();
                 if (haswood == true)
                 {
                     Console.WriteLine("You have a plank of wood.");
@@ -99,23 +85,17 @@ namespace _3Monkey
                     Console.WriteLine("See shoulda been taking note of what you picked up, as a result your punishment shall be going back to the start. :-)");
                     CaveEnter();
                 }
-
             }
-        
-          }
+        }
         // Cave 
         static void CaveEnter()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("You are at the Cave Opening ");
-            Console.ForegroundColor = ConsoleColor.White;
+            redtext("You are at the Cave Opening ");
             Console.WriteLine("There is a sign infront of you saying 'beware ahead dangerous pirates lurk within!!!' ");
-            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine();
-            Console.WriteLine("Ahead is a split in the path left takes you to a river, right a blocked passage!!!");
+            redtext("Ahead is a split in the path left takes you to a river, right a blocked passage!!!");
             Console.WriteLine();
-
             if (haswood == false)
             {
                 Console.WriteLine();
@@ -123,10 +103,8 @@ namespace _3Monkey
             }
             // loop while user input is not valid
             bool askAgain = true;
-
             while (askAgain)
             {
-
                 // get user input
                 string userCommand = GetInput();
                 // test for valid action
@@ -144,8 +122,6 @@ namespace _3Monkey
                 }
                 else if (userCommand == "pick up wood")
                 {
-                    //put wood in inventory
-
                     haswood = true;
                     Console.WriteLine("You picked up the wood");
                 }
@@ -153,14 +129,12 @@ namespace _3Monkey
                 {
                     askAgain = false;
                     DrawHelp();
-
                 }
                 else if (userCommand == "inventory")
                 {
                     askAgain = false;
                     inventory();
                 }
-
                 else
                 {
                     askAgain = false;
@@ -169,26 +143,19 @@ namespace _3Monkey
                 }
             }
         }
-
         static void RiverRoom()
         {
             // draw river room
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write("You are by a river running across your path about 20ft wide. Find a Way Across!! ");
-            Console.ForegroundColor = ConsoleColor.White;
+            redtext("You are by a river running across your path about 20ft wide. Find a Way Across!! ");
             Console.WriteLine("There is a half broken bridge ending in the middle of the river find a way over to it:   ");
-            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine();
-
             bool askagain = true;
             while (askagain)
             {
                 // capture user input
                 string userCommand = GetInput();
-
                 // test for valid action
-
                 if (userCommand == "go back")
                 {
                     askagain = false;
@@ -209,7 +176,6 @@ namespace _3Monkey
                     {
                         askagain = false;
                         DrawHelp();
-
                     }
                     else
                     {
@@ -225,14 +191,13 @@ namespace _3Monkey
         static void RiverOtherSide()
         {
             Console.Clear();
-            Console.WriteLine("As you pass over the bridge you find a piece of paper letting you know that on the other side there is another split in the road left takes you to a grog chamber, right takes you to the other side of the blocked passage you encountered earlier on.  ");
+            DarkCyantext("As you pass over the bridge you find a piece of paper letting you know that on the other side there is another split in the road left takes you to a grog chamber, right takes you to the other side of the blocked passage you encountered earlier on.  ");
             Console.WriteLine();
 
             bool askagain = true;
             while (askagain)
             {
                 string userCommand = GetInput();
-
                 if (userCommand == "go left")
                 {
                     // go to grog room
@@ -248,8 +213,7 @@ namespace _3Monkey
                 else if (userCommand == "pick up note")
                 {
                     hasnote = true;
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("You have the note it says:");
+                    darkredtext("You have the note it says:");
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine();
                     Console.WriteLine("Whoever finds this beware the door ahead requires a key but for the life of me i can't find the bloody thing. Sorry :-)");
@@ -258,7 +222,6 @@ namespace _3Monkey
                 {
                     askagain = false;
                     DrawHelp();
-
                 }
                 else
                 {
@@ -437,7 +400,42 @@ namespace _3Monkey
                 }
             }
         }
-        
+        static void redtext (string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(text);
+            Console.ForegroundColor= ConsoleColor.White;
+        }
+        static void Yellowtext(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void Bluetext(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void DarkCyantext(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void darkredtext(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        static void darkgreentext(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }
 
